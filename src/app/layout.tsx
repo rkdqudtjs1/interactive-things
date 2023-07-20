@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+import "./global.css";
+
 export const metadata: Metadata = {
   title: {
     absolute: "Interactive Things",
@@ -12,7 +14,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <head />
-      <body>{children}</body>
+      <body className="m-0">{children}</body>
     </html>
   );
 };
