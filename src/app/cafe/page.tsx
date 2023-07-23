@@ -1,8 +1,9 @@
-import { getImages } from "@/utils/unsplash.util";
+import { getImages } from "@/utils/image.util";
 import Image from "next/image";
 
 const CafePage = async () => {
-  const images = await getImages();
+  const imageNamespace = "paris";
+  const images = await getImages(imageNamespace);
 
   return (
     <div className="flex justify-center items-center">
@@ -12,13 +13,16 @@ const CafePage = async () => {
           gridTemplateColumns: `repeat(auto-fill, minmax(200px, auto))`,
         }}
       >
-        {images.map(({ id, urls }) => {
+        {images.map((image) => {
           return (
-            <div key={id} className="relative aspect-[150/100] overflow-hidden">
+            <div
+              key={image}
+              className="relative aspect-[150/100] overflow-hidden"
+            >
               <Image
                 fill
-                alt={id}
-                src={urls.thumb}
+                alt={image}
+                src={`/images/${imageNamespace}/thumb/${image}`}
                 className="object-cover hover:scale-125 transition-all"
               />
             </div>
